@@ -1,97 +1,61 @@
 app_name = "bas_ambulance"
 app_title = "BAS Ambulance Service"
-app_publisher = "Antigravity"
-app_description = "BAS Ambulance Service Management"
-app_email = "admin@example.com"
+app_publisher = "BAS Technologies"
+app_description = "Ambulance Service Management Module for ERPNext v15+"
+app_email = "admin@bas.in"
 app_license = "MIT"
 
-# Apps
-# ------------------
-
-# required_apps = []
-
-# Each item in the list will be evaluated and added to the global scope
-# when the user calls `frappe.init`
-# before_install = "bas_ambulance.install.before_install"
-# after_install = "bas_ambulance.install.after_install"
-
-# Uninstallation
-# ------------
-
-# before_uninstall = "bas_ambulance.uninstall.before_uninstall"
-# after_uninstall = "bas_ambulance.uninstall.after_uninstall"
-
-# Integration Setup
-# ------------------
-# To set up dependencies/integrations with other apps
-# Name of the app being installed is passed as an argument
-
-# before_app_install = "bas_ambulance.utils.before_app_install"
-# after_app_install = "bas_ambulance.utils.after_app_install"
-
-# Integration Cleanup
-# -------------------
-# To clean up dependencies/integrations with other apps
-# Name of the app being uninstalled is passed as an argument
-
-# before_app_uninstall = "bas_ambulance.utils.before_app_uninstall"
-# after_app_uninstall = "bas_ambulance.utils.after_app_uninstall"
-
-# Desk Notifications
-# ------------------
-# See frappe.core.notifications.get_notification_config
-
-# notification_config = "bas_ambulance.notifications.get_notification_config"
-
-# Permissions
-# -----------
-# Permissions evaluated in scripted ways
-
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
-
-# DocType Class
-# ---------------
-# Override standard doctype classes
-
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
-
 # Document Events
-# ---------------
-# Hook on document methods and events
-
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Helpline Call Record": {
+        "on_submit": "bas_ambulance.ambulance_service.doctype.helpline_call_record.helpline_call_record.on_submit",
+    },
+    "Ambulance Trip Sheet": {
+        "on_submit": "bas_ambulance.ambulance_service.doctype.ambulance_trip_sheet.ambulance_trip_sheet.on_submit",
+        "on_update_after_submit": "bas_ambulance.ambulance_service.doctype.ambulance_trip_sheet.ambulance_trip_sheet.on_update_after_submit",
+    },
+    "Ambulance Maintenance Record": {
+        "on_submit": "bas_ambulance.ambulance_service.doctype.ambulance_maintenance_record.ambulance_maintenance_record.update_ambulance_status",
+        "on_cancel": "bas_ambulance.ambulance_service.doctype.ambulance_maintenance_record.ambulance_maintenance_record.reset_ambulance_status",
+    },
+    "Compliance Task": {
+        "before_save": "bas_ambulance.ambulance_service.doctype.compliance_task.compliance_task.compute_penalty",
+    },
+    "Drug Supply Inventory": {
+        "before_save": "bas_ambulance.ambulance_service.doctype.drug_supply_inventory.drug_supply_inventory.update_stock_status",
+    },
+}
 
 # Scheduled Tasks
-# ---------------
+scheduler_events = {
+    "daily": [
+        "bas_ambulance.ambulance_service.doctype.compliance_task.compliance_task.auto_mark_overdue",
+        "bas_ambulance.ambulance_service.doctype.drug_supply_inventory.drug_supply_inventory.check_expiry_and_stock",
+        "bas_ambulance.ambulance_service.doctype.gps_device_master.gps_device_master.check_offline_devices",
+    ],
+    "monthly": [
+        "bas_ambulance.api.generate_compliance_calendar",
+    ],
+}
 
-# scheduler_events = {
-# 	"all": [
-# 		"bas_ambulance.tasks.all"
-# 	],
-# 	"daily": [
-# 		"bas_ambulance.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"bas_ambulance.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"bas_ambulance.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"bas_ambulance.tasks.monthly"
-# 	],
-# }
+# Fixtures — exported on bench export-fixtures
+fixtures = [
+    {"dt": "Custom Field", "filters": [["module", "=", "BAS Ambulance Service"]]},
+    {
+        "dt": "Role",
+        "filters": [
+            ["name", "in", [
+                "Dispatch Officer", "Paramedic", "Fleet Manager",
+                "Compliance Officer", "CAD Operator", "Billing Executive",
+                "Call Centre Agent", "MMU Coordinator", "Training Officer"
+            ]]
+        ]
+    },
+]
+
+# Permissions
+permission_query_conditions = {
+    "Helpline Call Record": "bas_ambulance.api.get_call_permission_query",
+}
+
+override_whitelisted_methods = {}

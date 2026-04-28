@@ -1,0 +1,39 @@
+{
+  "name": "Ambulance Station",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "is_submittable": 0,
+  "track_changes": 1,
+  "title_field": "station_name",
+  "fields": [
+    {"fieldname": "station_name", "label": "Station Name", "fieldtype": "Data", "reqd": 1, "in_list_view": 1, "bold": 1},
+    {"fieldname": "station_code", "label": "Station Code", "fieldtype": "Data", "reqd": 1, "in_list_view": 1},
+    {"fieldname": "state", "label": "State", "fieldtype": "Link", "options": "State", "reqd": 1},
+    {"fieldname": "district", "label": "District", "fieldtype": "Data", "reqd": 1},
+    {"fieldname": "col_break_1", "fieldtype": "Column Break"},
+    {"fieldname": "is_247", "label": "Is 24x7", "fieldtype": "Check"},
+    {"fieldname": "operational_hours", "label": "Operational Hours", "fieldtype": "Data"},
+    {"fieldname": "call_center_capacity", "label": "Call Center Capacity (Seats)", "fieldtype": "Int"},
+    {"fieldname": "government_contract", "label": "Government Contract", "fieldtype": "Link", "options": "Government Contract"},
+    {"fieldname": "sec_location", "label": "Location", "fieldtype": "Section Break"},
+    {"fieldname": "address", "label": "Address", "fieldtype": "Small Text"},
+    {"fieldname": "pincode", "label": "Pincode", "fieldtype": "Data"},
+    {"fieldname": "latitude", "label": "Latitude", "fieldtype": "Float"},
+    {"fieldname": "longitude", "label": "Longitude", "fieldtype": "Float"},
+    {"fieldname": "sec_contact", "label": "Contact", "fieldtype": "Section Break"},
+    {"fieldname": "station_head", "label": "Station Head", "fieldtype": "Link", "options": "Employee"},
+    {"fieldname": "contact_number", "label": "Contact Number", "fieldtype": "Data"},
+    {"fieldname": "helplines_served", "label": "Helplines Served", "fieldtype": "MultiSelect",
+     "options": "108\n102\n104\n112\n1033\nMMU"},
+    {"fieldname": "sec_stats", "label": "Statistics", "fieldtype": "Section Break"},
+    {"fieldname": "total_ambulances", "label": "Total Ambulances", "fieldtype": "Int", "read_only": 1},
+    {"fieldname": "ambulances_available", "label": "Ambulances Available", "fieldtype": "Int", "read_only": 1},
+    {"fieldname": "active_crew_count", "label": "Active Crew Count", "fieldtype": "Int", "read_only": 1},
+    {"fieldname": "remarks", "label": "Remarks", "fieldtype": "Small Text"}
+  ],
+  "permissions": [
+    {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1},
+    {"role": "Fleet Manager", "read": 1, "write": 1, "create": 1},
+    {"role": "Dispatch Officer", "read": 1}
+  ]
+}
