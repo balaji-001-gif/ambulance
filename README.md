@@ -1,8 +1,17 @@
 # 🚑 BAS Ambulance Service Management
+## Standard Operating Procedure (SOP)
 
-ERPNext v15+ module designed to cover multi-helpline emergency response deployments (108, 102, 104, MMUs, and SLA metrics workflows).
+Welcome to the operational guide for the BAS Ambulance Service module built on ERPNext v15+. This SOP covers baseline configurations and end-to-end workflows.
 
-## Features
-* Computer Aided Dispatch controls.
-* Crew allocation constraints logic.
-* Overdue task SLA validation mapping.
+---
+
+## 🚀 1. Initial Onboarding Setup
+
+1. **Create Ambulance Stations**: Map physical dispatch zones.
+2. **Register Vehicles in Ambulance Master**: Assign specific default helpline numbers.
+3. **Onboard Paramedics**: Set roles as active to unlock assigned state routes.
+
+## 🔄 2. Dispatch & Incident Cycle Workflow
+
+1. **Log Inbound Helpline Records**: Operators tag triage categories dynamically.
+2. **Monitor Ongoing Emergency Updates**: Updates are tracked against route map endpoints safely.
