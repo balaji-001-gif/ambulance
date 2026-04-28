@@ -1,0 +1,33 @@
+{
+  "name": "Compliance Workflow",
+  "document_type": "Compliance Task",
+  "is_active": 1,
+  "states": [
+    {"state":"Open","doc_status":"0","style":"Warning",
+     "allow_edit":"Compliance Officer"},
+    {"state":"Assigned","doc_status":"0","style":"Primary",
+     "allow_edit":"Compliance Officer"},
+    {"state":"In Progress","doc_status":"0","style":"Primary",
+     "allow_edit":"Fleet Manager"},
+    {"state":"Completed","doc_status":"1","style":"Success",
+     "allow_edit":"System Manager"},
+    {"state":"Overdue","doc_status":"0","style":"Danger",
+     "allow_edit":"Compliance Officer"},
+    {"state":"Waived","doc_status":"2","style":"Danger",
+     "allow_edit":"System Manager"}
+  ],
+  "transitions": [
+    {"state":"Open","action":"Assign","next_state":"Assigned",
+     "allowed":"Compliance Officer"},
+    {"state":"Assigned","action":"Start Work","next_state":"In Progress",
+     "allowed":"Fleet Manager"},
+    {"state":"In Progress","action":"Mark Complete","next_state":"Completed",
+     "allowed":"Compliance Officer"},
+    {"state":"Overdue","action":"Complete","next_state":"Completed",
+     "allowed":"Compliance Officer"},
+    {"state":"Open","action":"Waive","next_state":"Waived",
+     "allowed":"System Manager"},
+    {"state":"Overdue","action":"Waive","next_state":"Waived",
+     "allowed":"System Manager"}
+  ]
+}

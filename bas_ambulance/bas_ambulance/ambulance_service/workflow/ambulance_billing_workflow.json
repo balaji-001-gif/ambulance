@@ -1,0 +1,33 @@
+{
+  "name": "Ambulance Billing Workflow",
+  "document_type": "Ambulance Bill",
+  "is_active": 1,
+  "states": [
+    {"state":"Draft","doc_status":"0","style":"Warning",
+     "allow_edit":"Billing Executive"},
+    {"state":"Submitted","doc_status":"0","style":"Primary",
+     "allow_edit":"Accounts Manager"},
+    {"state":"Approved","doc_status":"1","style":"Success",
+     "allow_edit":"Billing Executive"},
+    {"state":"Partial","doc_status":"1","style":"Warning",
+     "allow_edit":"Billing Executive"},
+    {"state":"Paid","doc_status":"1","style":"Success",
+     "allow_edit":"System Manager"},
+    {"state":"Waived","doc_status":"2","style":"Danger",
+     "allow_edit":"System Manager"}
+  ],
+  "transitions": [
+    {"state":"Draft","action":"Submit Bill","next_state":"Submitted",
+     "allowed":"Billing Executive"},
+    {"state":"Submitted","action":"Approve","next_state":"Approved",
+     "allowed":"Accounts Manager"},
+    {"state":"Approved","action":"Partial Payment","next_state":"Partial",
+     "allowed":"Billing Executive"},
+    {"state":"Approved","action":"Full Payment","next_state":"Paid",
+     "allowed":"Billing Executive"},
+    {"state":"Partial","action":"Full Payment","next_state":"Paid",
+     "allowed":"Billing Executive"},
+    {"state":"Approved","action":"Waive","next_state":"Waived",
+     "allowed":"System Manager"}
+  ]
+}

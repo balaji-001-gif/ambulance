@@ -1,0 +1,31 @@
+{
+  "name": "GPS Device Master",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "fields": [
+    {"fieldname":"device_id","label":"Device ID","fieldtype":"Data","reqd":1},
+    {"fieldname":"imei_number","label":"IMEI Number","fieldtype":"Data","reqd":1},
+    {"fieldname":"device_make_model","label":"Make / Model","fieldtype":"Data"},
+    {"fieldname":"sim_number","label":"SIM Number","fieldtype":"Data"},
+    {"fieldname":"telecom_operator","label":"Telecom Operator","fieldtype":"Select",
+     "options":"Airtel\nBSNL\nJio\nVi\nOther"},
+    {"fieldname":"data_plan_expiry","label":"Data Plan Expiry","fieldtype":"Date"},
+    {"fieldname":"assigned_ambulance","label":"Assigned Ambulance",
+     "fieldtype":"Link","options":"Ambulance Master"},
+    {"fieldname":"device_status","label":"Device Status","fieldtype":"Select",
+     "options":"Active\nInactive\nFaulty\nReplaced","default":"Active","in_list_view":1},
+    {"fieldname":"last_ping_time","label":"Last Ping Time","fieldtype":"Datetime",
+     "read_only":1},
+    {"fieldname":"last_known_lat","label":"Last Latitude","fieldtype":"Float",
+     "read_only":1},
+    {"fieldname":"last_known_lng","label":"Last Longitude","fieldtype":"Float",
+     "read_only":1},
+    {"fieldname":"installation_date","label":"Installation Date","fieldtype":"Date"},
+    {"fieldname":"warranty_expiry","label":"Warranty Expiry","fieldtype":"Date"},
+    {"fieldname":"vendor","label":"Vendor","fieldtype":"Link","options":"Supplier"}
+  ],
+  "permissions": [
+    {"role":"Fleet Manager","read":1,"write":1,"create":1},
+    {"role":"System Manager","read":1,"write":1,"create":1,"delete":1}
+  ]
+}

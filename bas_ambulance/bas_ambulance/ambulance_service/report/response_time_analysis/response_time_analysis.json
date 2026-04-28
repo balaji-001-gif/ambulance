@@ -1,0 +1,12 @@
+{
+  "name": "Response Time Analysis",
+  "module": "BAS Ambulance Service",
+  "report_type": "Script Report",
+  "ref_doctype": "Ambulance Trip Sheet",
+  "is_standard": "Yes",
+  "roles": [
+    {"role": "Fleet Manager"},
+    {"role": "Dispatch Officer"},
+    {"role": "System Manager"}
+  ]
+}

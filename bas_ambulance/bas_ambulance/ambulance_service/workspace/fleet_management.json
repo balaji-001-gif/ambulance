@@ -1,0 +1,37 @@
+{
+  "name": "Fleet Management",
+  "label": "Fleet Management",
+  "module": "BAS Ambulance Service",
+  "category": "Modules",
+  "icon": "truck",
+  "color": "#1A5276",
+  "is_standard": 1,
+  "roles": ["Fleet Manager"],
+  "shortcuts": [
+    {"type":"DocType","label":"Ambulance Master","doc_type":"Ambulance Master",
+     "color":"#1A5276"},
+    {"type":"DocType","label":"Ambulance Station","doc_type":"Ambulance Station",
+     "color":"#2E86C1"},
+    {"type":"DocType","label":"Maintenance Record",
+     "doc_type":"Ambulance Maintenance Record","color":"#D68910"},
+    {"type":"DocType","label":"GPS Device Master","doc_type":"GPS Device Master",
+     "color":"#117A65"},
+    {"type":"DocType","label":"Incident Report","doc_type":"Incident Report",
+     "color":"#C0392B"},
+    {"type":"Report","label":"Fleet Utilisation","report_name":"Fleet Utilisation Report",
+     "color":"#1A252F"}
+  ],
+  "content": [
+    {"type":"chart","data":{"chart_name":"Fleet Status Donut","col":6}},
+    {"type":"chart","data":{"chart_name":"Maintenance Cost Trend","col":6}},
+    {"type":"list","data":{"doctype":"Ambulance Master",
+     "label":"Ambulances Under Maintenance",
+     "filters":[["operational_status","=","Under Maintenance"]],"col":4}},
+    {"type":"list","data":{"doctype":"Ambulance Master",
+     "label":"Fitness Expiring (30 days)",
+     "filters":[["fitness_expiry","<=","frappe.utils.add_days(today(),30)"]],"col":4}},
+    {"type":"list","data":{"doctype":"GPS Device Master",
+     "label":"GPS Devices Offline",
+     "filters":[["device_status","=","Inactive"]],"col":4}}
+  ]
+}

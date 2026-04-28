@@ -1,0 +1,42 @@
+{
+  "name": "Compliance Task",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "is_submittable": 0,
+  "autoname": "format:CMPL-{YYYY}-{#####}",
+  "fields": [
+    {"fieldname":"compliance_type","label":"Compliance Type",
+     "fieldtype":"Select",
+     "options":"Vehicle Fitness\nVehicle Permit\nPUC Certificate\nInsurance Renewal\nDrug License\nBLS Certification\nACLS Certification\nPALS Certification\nDriving License\nAnnual Medical Fitness\nFire Extinguisher Check\nFirst Aid Kit Inspection\nOxygen Hydro Test\nEquipment Calibration\nStatutory Filing\nGPS Data Plan\nGovt Contract Renewal",
+     "reqd":1,"in_list_view":1},
+    {"fieldname":"reference_doctype","label":"Reference DocType",
+     "fieldtype":"Link","options":"DocType"},
+    {"fieldname":"reference_document","label":"Reference Document",
+     "fieldtype":"Dynamic Link","options":"reference_doctype"},
+    {"fieldname":"due_date","label":"Due Date","fieldtype":"Date",
+     "reqd":1,"in_list_view":1},
+    {"fieldname":"assigned_to","label":"Assigned To",
+     "fieldtype":"Link","options":"Employee"},
+    {"fieldname":"priority","label":"Priority","fieldtype":"Select",
+     "options":"Critical\nHigh\nMedium\nLow","reqd":1,"in_list_view":1},
+    {"fieldname":"status","label":"Status","fieldtype":"Select",
+     "options":"Open\nAssigned\nIn Progress\nCompleted\nOverdue\nWaived",
+     "default":"Open","in_list_view":1},
+    {"fieldname":"col_break_1","fieldtype":"Column Break"},
+    {"fieldname":"completion_date","label":"Completion Date","fieldtype":"Date"},
+    {"fieldname":"penalty_per_day","label":"Penalty Per Day (INR)",
+     "fieldtype":"Currency"},
+    {"fieldname":"days_overdue","label":"Days Overdue","fieldtype":"Int",
+     "read_only":1},
+    {"fieldname":"estimated_penalty","label":"Estimated Penalty (INR)",
+     "fieldtype":"Currency","read_only":1},
+    {"fieldname":"supporting_documents","label":"Supporting Documents",
+     "fieldtype":"Attach Multiple"},
+    {"fieldname":"remarks","label":"Remarks","fieldtype":"Small Text"}
+  ],
+  "permissions": [
+    {"role":"Compliance Officer","read":1,"write":1,"create":1},
+    {"role":"Fleet Manager","read":1,"write":1,"create":1},
+    {"role":"System Manager","read":1,"write":1,"create":1,"delete":1}
+  ]
+}

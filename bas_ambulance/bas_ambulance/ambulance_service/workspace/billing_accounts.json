@@ -1,0 +1,30 @@
+{
+  "name": "Billing and Accounts",
+  "label": "Billing & Accounts",
+  "module": "BAS Ambulance Service",
+  "category": "Modules",
+  "icon": "credit-card",
+  "color": "#7D6608",
+  "is_standard": 1,
+  "roles": ["Billing Executive", "Accounts Manager"],
+  "shortcuts": [
+    {"type":"DocType","label":"Ambulance Bill","doc_type":"Ambulance Bill","color":"#7D6608"},
+    {"type":"DocType","label":"Insurance Claim","doc_type":"Insurance Claim","color":"#117A65"},
+    {"type":"Report","label":"Revenue vs Effort","report_name":"Revenue vs Effort Report"},
+    {"type":"Report","label":"Claim Tracker","report_name":"Insurance Claim Tracker"}
+  ],
+  "content": [
+    {"type":"chart","data":{"chart_name":"Revenue by Billing Mode","col":6}},
+    {"type":"chart","data":{"chart_name":"Monthly Collection Trend","col":6}},
+    {"type":"list","data":{"doctype":"Ambulance Trip Sheet",
+     "label":"Unbilled Completed Trips",
+     "filters":[["billing_status","=","Pending"],["trip_status","=","Approved"]],"col":4}},
+    {"type":"list","data":{"doctype":"Insurance Claim",
+     "label":"Pending Claims > 30 days",
+     "filters":[["status","in","Submitted,Under Query"],
+                ["submission_date","<=","frappe.utils.add_days(today(),-30)"]],"col":4}},
+    {"type":"list","data":{"doctype":"Ambulance Bill",
+     "label":"Partially Paid Bills",
+     "filters":[["payment_status","=","Partial"]],"col":4}}
+  ]
+}

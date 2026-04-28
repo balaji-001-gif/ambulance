@@ -1,0 +1,11 @@
+{
+  "name": "Fleet Utilisation Report",
+  "module": "BAS Ambulance Service",
+  "report_type": "Script Report",
+  "ref_doctype": "Ambulance Master",
+  "is_standard": "Yes",
+  "roles": [
+    {"role": "Fleet Manager"},
+    {"role": "System Manager"}
+  ]
+}

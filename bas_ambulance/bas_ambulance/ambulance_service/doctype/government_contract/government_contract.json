@@ -1,0 +1,40 @@
+{
+  "name": "Government Contract",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "autoname": "format:CONT-{YYYY}-{###}",
+  "fields": [
+    {"fieldname":"contract_name","label":"Contract Name","fieldtype":"Data","reqd":1},
+    {"fieldname":"government_body","label":"Government Body","fieldtype":"Data","reqd":1},
+    {"fieldname":"state","label":"State","fieldtype":"Link","options":"State","reqd":1},
+    {"fieldname":"helplines_covered","label":"Helplines Covered",
+     "fieldtype":"MultiSelect",
+     "options":"108\n102\n104\n112\n1033\n181\nMMU"},
+    {"fieldname":"col_break_1","fieldtype":"Column Break"},
+    {"fieldname":"contract_status","label":"Status","fieldtype":"Select",
+     "options":"Active\nExpired\nUnder Renewal\nTerminated",
+     "default":"Active","in_list_view":1},
+    {"fieldname":"contract_start_date","label":"Start Date","fieldtype":"Date","reqd":1},
+    {"fieldname":"contract_end_date","label":"End Date","fieldtype":"Date","reqd":1},
+    {"fieldname":"sec_sla","label":"SLA Terms","fieldtype":"Section Break"},
+    {"fieldname":"committed_fleet_size","label":"Committed Fleet Size",
+     "fieldtype":"Int"},
+    {"fieldname":"committed_stations","label":"Committed Stations","fieldtype":"Int"},
+    {"fieldname":"sla_response_time_min","label":"SLA Response Time (min)",
+     "fieldtype":"Int"},
+    {"fieldname":"sla_uptime_pct","label":"SLA Uptime (%)","fieldtype":"Float"},
+    {"fieldname":"penalty_per_breach","label":"Penalty per SLA Breach (INR)",
+     "fieldtype":"Currency"},
+    {"fieldname":"sec_finance","label":"Finance","fieldtype":"Section Break"},
+    {"fieldname":"contract_value","label":"Contract Value (INR)","fieldtype":"Currency"},
+    {"fieldname":"payment_schedule","label":"Payment Schedule","fieldtype":"Select",
+     "options":"Monthly\nQuarterly\nAnnual"},
+    {"fieldname":"tender_reference","label":"Tender Reference","fieldtype":"Data"},
+    {"fieldname":"contract_document","label":"Contract Document","fieldtype":"Attach"}
+  ],
+  "permissions": [
+    {"role":"System Manager","read":1,"write":1,"create":1,"delete":1},
+    {"role":"Fleet Manager","read":1},
+    {"role":"Accounts Manager","read":1}
+  ]
+}

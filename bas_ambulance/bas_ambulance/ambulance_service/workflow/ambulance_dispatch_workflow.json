@@ -1,0 +1,42 @@
+{
+  "name": "Ambulance Dispatch Workflow",
+  "document_type": "Helpline Call Record",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "states": [
+    {"state":"Received","doc_status":"0","style":"Warning",
+     "allow_edit":"Call Centre Agent"},
+    {"state":"Dispatched","doc_status":"0","style":"Primary",
+     "allow_edit":"Dispatch Officer"},
+    {"state":"En Route","doc_status":"0","style":"Primary",
+     "allow_edit":"Dispatch Officer"},
+    {"state":"On Scene","doc_status":"0","style":"Primary",
+     "allow_edit":"Dispatch Officer"},
+    {"state":"Transporting","doc_status":"0","style":"Primary",
+     "allow_edit":"Dispatch Officer"},
+    {"state":"Completed","doc_status":"1","style":"Success",
+     "allow_edit":"System Manager"},
+    {"state":"Cancelled","doc_status":"2","style":"Danger",
+     "allow_edit":"System Manager"},
+    {"state":"Missed","doc_status":"2","style":"Danger",
+     "allow_edit":"System Manager"}
+  ],
+  "transitions": [
+    {"state":"Received","action":"Dispatch","next_state":"Dispatched",
+     "allowed":"Dispatch Officer","allow_self_approval":0},
+    {"state":"Dispatched","action":"En Route","next_state":"En Route",
+     "allowed":"Dispatch Officer","allow_self_approval":1},
+    {"state":"En Route","action":"Arrived at Scene","next_state":"On Scene",
+     "allowed":"Dispatch Officer","allow_self_approval":1},
+    {"state":"On Scene","action":"Patient Loaded","next_state":"Transporting",
+     "allowed":"Dispatch Officer","allow_self_approval":1},
+    {"state":"Transporting","action":"Handover Complete","next_state":"Completed",
+     "allowed":"Dispatch Officer","allow_self_approval":1},
+    {"state":"Received","action":"Cancel","next_state":"Cancelled",
+     "allowed":"Dispatch Officer"},
+    {"state":"Dispatched","action":"Cancel","next_state":"Cancelled",
+     "allowed":"Dispatch Officer"},
+    {"state":"Received","action":"Mark Missed","next_state":"Missed",
+     "allowed":"System Manager"}
+  ]
+}

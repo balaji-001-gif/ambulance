@@ -1,0 +1,29 @@
+{
+  "name": "Maintenance Workflow",
+  "document_type": "Ambulance Maintenance Record",
+  "is_active": 1,
+  "states": [
+    {"state":"Scheduled","doc_status":"0","style":"Warning",
+     "allow_edit":"Fleet Manager"},
+    {"state":"In Progress","doc_status":"0","style":"Primary",
+     "allow_edit":"Fleet Manager"},
+    {"state":"Awaiting Parts","doc_status":"0","style":"Warning",
+     "allow_edit":"Fleet Manager"},
+    {"state":"Completed","doc_status":"1","style":"Success",
+     "allow_edit":"Fleet Manager"},
+    {"state":"Cancelled","doc_status":"2","style":"Danger",
+     "allow_edit":"System Manager"}
+  ],
+  "transitions": [
+    {"state":"Scheduled","action":"Send to Workshop",
+     "next_state":"In Progress","allowed":"Fleet Manager"},
+    {"state":"In Progress","action":"Awaiting Parts",
+     "next_state":"Awaiting Parts","allowed":"Fleet Manager"},
+    {"state":"Awaiting Parts","action":"Resume Work",
+     "next_state":"In Progress","allowed":"Fleet Manager"},
+    {"state":"In Progress","action":"Complete",
+     "next_state":"Completed","allowed":"Fleet Manager"},
+    {"state":"Scheduled","action":"Cancel",
+     "next_state":"Cancelled","allowed":"System Manager"}
+  ]
+}

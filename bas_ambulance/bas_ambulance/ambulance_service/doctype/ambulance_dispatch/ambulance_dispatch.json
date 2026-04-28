@@ -1,0 +1,26 @@
+{
+  "name": "Ambulance Dispatch",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "is_submittable": 0,
+  "autoname": "format:DISP-{YYYY}{MM}{DD}-{####}",
+  "track_changes": 1,
+  "fields": [
+    {"fieldname":"helpline_call","label":"Helpline Call",
+     "fieldtype":"Link","options":"Helpline Call Record","reqd":1},
+    {"fieldname":"dispatch_datetime","label":"Dispatch Date & Time",
+     "fieldtype":"Datetime","reqd":1},
+    {"fieldname":"assigned_ambulance","label":"Assigned Ambulance",
+     "fieldtype":"Link","options":"Ambulance Master","reqd":1},
+    {"fieldname":"dispatch_station","label":"Dispatch Station",
+     "fieldtype":"Link","options":"Ambulance Station","reqd":1},
+    {"fieldname":"dispatch_mode","label":"Dispatch Mode",
+     "fieldtype":"Select","options":"Manual\nAutomated CAD"},
+    {"fieldname":"dispatch_status","label":"Dispatch Status",
+     "fieldtype":"Select","options":"Assigned\nAccepted\nDeclined\nEn Route","default":"Assigned"}
+  ],
+  "permissions": [
+    {"role":"Dispatch Officer","read":1,"write":1,"create":1},
+    {"role":"System Manager","read":1,"write":1,"create":1,"delete":1}
+  ]
+}

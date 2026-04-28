@@ -1,0 +1,40 @@
+{
+  "name": "Crew Member",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "fields": [
+    {"fieldname":"employee","label":"Employee","fieldtype":"Link",
+     "options":"Employee","reqd":1},
+    {"fieldname":"crew_member_name","label":"Name","fieldtype":"Data",
+     "fetch_from":"employee.employee_name","in_list_view":1},
+    {"fieldname":"role","label":"Role","fieldtype":"Select",
+     "options":"Paramedic\nEMT\nStaff Nurse\nDriver\nCall Centre Agent\nCAD Operator\nTeam Leader\nTraining Officer",
+     "reqd":1,"in_list_view":1},
+    {"fieldname":"home_station","label":"Home Station",
+     "fieldtype":"Link","options":"Ambulance Station","reqd":1},
+    {"fieldname":"on_duty_status","label":"Duty Status","fieldtype":"Select",
+     "options":"On Duty\nOff Duty\nOn Leave\nTraining",
+     "default":"Off Duty","in_list_view":1},
+    {"fieldname":"sec_cert","label":"Certifications","fieldtype":"Section Break"},
+    {"fieldname":"bls_certified","label":"BLS Certified","fieldtype":"Check"},
+    {"fieldname":"acls_certified","label":"ACLS Certified","fieldtype":"Check"},
+    {"fieldname":"pals_certified","label":"PALS Certified","fieldtype":"Check"},
+    {"fieldname":"certification_number","label":"Cert No.","fieldtype":"Data"},
+    {"fieldname":"certification_expiry","label":"Cert Expiry","fieldtype":"Date"},
+    {"fieldname":"sec_dl","label":"Driving License","fieldtype":"Section Break"},
+    {"fieldname":"driving_license_no","label":"DL Number","fieldtype":"Data"},
+    {"fieldname":"dl_category","label":"DL Category","fieldtype":"Select",
+     "options":"LMV\nHMV\nBoth"},
+    {"fieldname":"dl_expiry","label":"DL Expiry","fieldtype":"Date"},
+    {"fieldname":"sec_health","label":"Medical Fitness","fieldtype":"Section Break"},
+    {"fieldname":"medical_fitness_date","label":"Medical Fitness Date",
+     "fieldtype":"Date"},
+    {"fieldname":"medical_fitness_expiry","label":"Medical Fitness Expiry",
+     "fieldtype":"Date"}
+  ],
+  "permissions": [
+    {"role":"HR Manager","read":1,"write":1,"create":1,"delete":1},
+    {"role":"Fleet Manager","read":1,"write":1},
+    {"role":"Dispatch Officer","read":1}
+  ]
+}

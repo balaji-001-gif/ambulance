@@ -1,0 +1,19 @@
+{
+  "name": "Incident Investigation Workflow",
+  "document_type": "Incident Report",
+  "is_active": 1,
+  "states": [
+    {"state":"Reported","doc_status":"0","style":"Danger","allow_edit":"Fleet Manager"},
+    {"state":"Under Investigation","doc_status":"0","style":"Warning","allow_edit":"Fleet Manager"},
+    {"state":"Action Pending","doc_status":"0","style":"Warning","allow_edit":"Fleet Manager"},
+    {"state":"Closed","doc_status":"1","style":"Success","allow_edit":"System Manager"},
+    {"state":"Escalated","doc_status":"0","style":"Danger","allow_edit":"System Manager"}
+  ],
+  "transitions": [
+    {"state":"Reported","action":"Investigate","next_state":"Under Investigation","allowed":"Fleet Manager"},
+    {"state":"Under Investigation","action":"Identify Root Cause","next_state":"Action Pending","allowed":"Fleet Manager"},
+    {"state":"Action Pending","action":"Close","next_state":"Closed","allowed":"Fleet Manager"},
+    {"state":"Under Investigation","action":"Escalate","next_state":"Escalated","allowed":"System Manager"},
+    {"state":"Escalated","action":"Close","next_state":"Closed","allowed":"System Manager"}
+  ]
+}

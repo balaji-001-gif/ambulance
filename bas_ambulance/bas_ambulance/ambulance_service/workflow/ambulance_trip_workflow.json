@@ -1,0 +1,35 @@
+{
+  "name": "Ambulance Trip Workflow",
+  "document_type": "Ambulance Trip Sheet",
+  "is_active": 1,
+  "states": [
+    {"state":"Draft","doc_status":"0","style":"Warning","allow_edit":"Paramedic"},
+    {"state":"In Progress","doc_status":"0","style":"Primary","allow_edit":"Paramedic"},
+    {"state":"Pending Review","doc_status":"0","style":"Warning",
+     "allow_edit":"Fleet Manager"},
+    {"state":"Approved","doc_status":"1","style":"Success",
+     "allow_edit":"Fleet Manager"},
+    {"state":"Billed","doc_status":"1","style":"Success",
+     "allow_edit":"Billing Executive"},
+    {"state":"Cancelled","doc_status":"2","style":"Danger",
+     "allow_edit":"System Manager"},
+    {"state":"Incident Reported","doc_status":"0","style":"Danger",
+     "allow_edit":"Fleet Manager"}
+  ],
+  "transitions": [
+    {"state":"Draft","action":"Start Trip","next_state":"In Progress",
+     "allowed":"Paramedic"},
+    {"state":"In Progress","action":"Submit for Review",
+     "next_state":"Pending Review","allowed":"Paramedic"},
+    {"state":"Pending Review","action":"Approve",
+     "next_state":"Approved","allowed":"Fleet Manager"},
+    {"state":"Pending Review","action":"Return for Correction",
+     "next_state":"In Progress","allowed":"Fleet Manager"},
+    {"state":"Approved","action":"Mark Billed",
+     "next_state":"Billed","allowed":"Billing Executive"},
+    {"state":"In Progress","action":"Flag Incident",
+     "next_state":"Incident Reported","allowed":"Paramedic"},
+    {"state":"Pending Review","action":"Cancel",
+     "next_state":"Cancelled","allowed":"System Manager"}
+  ]
+}

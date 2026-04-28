@@ -1,0 +1,12 @@
+{
+  "name": "Helpline Call Summary",
+  "module": "BAS Ambulance Service",
+  "report_type": "Script Report",
+  "ref_doctype": "Helpline Call Record",
+  "is_standard": "Yes",
+  "roles": [
+    {"role": "Call Centre Agent"},
+    {"role": "Dispatch Officer"},
+    {"role": "System Manager"}
+  ]
+}

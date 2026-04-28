@@ -1,0 +1,21 @@
+{
+  "name": "Insurance Claim Workflow",
+  "document_type": "Insurance Claim",
+  "is_active": 1,
+  "states": [
+    {"state":"Draft","doc_status":"0","style":"Warning","allow_edit":"Billing Executive"},
+    {"state":"Submitted","doc_status":"0","style":"Primary","allow_edit":"Accounts Manager"},
+    {"state":"Under Query","doc_status":"0","style":"Warning","allow_edit":"Billing Executive"},
+    {"state":"Approved","doc_status":"1","style":"Success","allow_edit":"Billing Executive"},
+    {"state":"Rejected","doc_status":"2","style":"Danger","allow_edit":"System Manager"},
+    {"state":"Received","doc_status":"1","style":"Success","allow_edit":"System Manager"}
+  ],
+  "transitions": [
+    {"state":"Draft","action":"Submit to Insurer","next_state":"Submitted","allowed":"Billing Executive"},
+    {"state":"Submitted","action":"Mark Under Query","next_state":"Under Query","allowed":"Billing Executive"},
+    {"state":"Under Query","action":"Resubmit","next_state":"Submitted","allowed":"Billing Executive"},
+    {"state":"Submitted","action":"Approve","next_state":"Approved","allowed":"Billing Executive"},
+    {"state":"Submitted","action":"Reject","next_state":"Rejected","allowed":"Billing Executive"},
+    {"state":"Approved","action":"Payment Received","next_state":"Received","allowed":"Billing Executive"}
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Command Control Room",
+  "label": "Command & Control Room",
+  "module": "BAS Ambulance Service",
+  "category": "Modules",
+  "icon": "ambulance",
+  "color": "#C0392B",
+  "is_standard": 1,
+  "roles": ["Dispatch Officer", "Call Centre Agent", "CAD Operator"],
+  "shortcuts": [
+    {"type":"DocType","label":"New 108 Call","doc_type":"Helpline Call Record",
+     "color":"#C0392B","icon":"phone"},
+    {"type":"DocType","label":"New 102 Call","doc_type":"Helpline Call Record",
+     "color":"#E74C3C","icon":"phone"},
+    {"type":"DocType","label":"Active Trips","doc_type":"Helpline Call Record",
+     "color":"#117A65","icon":"truck"},
+    {"type":"DocType","label":"Available Ambulances","doc_type":"Ambulance Master",
+     "color":"#1E8449","icon":"check"},
+    {"type":"DocType","label":"CAD Operator Log","doc_type":"CAD Operator Log",
+     "color":"#2C3E50","icon":"list"},
+    {"type":"Report","label":"Helpline Summary","report_name":"Helpline Call Summary",
+     "color":"#1A252F","icon":"bar-chart"},
+    {"type":"Report","label":"Response Time","report_name":"Response Time Analysis",
+     "color":"#D68910","icon":"activity"}
+  ],
+  "content": [
+    {"type":"header","data":{"text":"Live Operations","col":12}},
+    {"type":"chart","data":{"chart_name":"Calls Today by Helpline",
+     "col":6}},
+    {"type":"chart","data":{"chart_name":"Fleet Status","col":6}},
+    {"type":"header","data":{"text":"Quick Lists","col":12}},
+    {"type":"list","data":{"doctype":"Helpline Call Record",
+     "label":"Open Calls",
+     "filters":[["call_status","in","Received,Dispatched"]],"col":4}},
+    {"type":"list","data":{"doctype":"Helpline Call Record",
+     "label":"Active Trips",
+     "filters":[["call_status","in","En Route,On Scene,Transporting"]],"col":4}},
+    {"type":"list","data":{"doctype":"Compliance Task",
+     "label":"Overdue Compliance",
+     "filters":[["status","=","Overdue"]],"col":4}}
+  ]
+}

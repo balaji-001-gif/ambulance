@@ -1,0 +1,19 @@
+{
+  "name": "Drug Supply Inventory",
+  "module": "BAS Ambulance Service",
+  "doctype": "DocType",
+  "fields": [
+    {"fieldname":"item_name","label":"Item Name","fieldtype":"Data","reqd":1,"in_list_view":1},
+    {"fieldname":"item_group","label":"Item Group","fieldtype":"Select",
+     "options":"Medicine\nConsumable\nEquipment","reqd":1},
+    {"fieldname":"quantity_in_stock","label":"Quantity in Stock","fieldtype":"Float","in_list_view":1},
+    {"fieldname":"minimum_stock_level","label":"Minimum Stock Level","fieldtype":"Float"},
+    {"fieldname":"expiry_date","label":"Expiry Date","fieldtype":"Date","in_list_view":1},
+    {"fieldname":"stock_status","label":"Stock Status","fieldtype":"Select",
+     "options":"Adequate\nLow Stock\nOut of Stock\nExpired","read_only":1,"in_list_view":1}
+  ],
+  "permissions": [
+    {"role":"Fleet Manager","read":1,"write":1,"create":1,"delete":1},
+    {"role":"System Manager","read":1,"write":1,"create":1,"delete":1}
+  ]
+}
